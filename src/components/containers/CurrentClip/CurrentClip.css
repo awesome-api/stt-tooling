@@ -1,9 +1,8 @@
-.sidebar {
-  /* background-color: cadetblue; */
-  width: 30%;
+.current-clip {
+  /* background-color: chocolate; */
   align-items: center;
   background-color: lightgrey;
   border-radius: 1rem;
-  height: 35rem;
+  height: 5rem;
   margin: 2rem;
 }

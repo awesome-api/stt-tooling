@@ -4,7 +4,9 @@ import './YourClips.css';
 class YourClips extends Component {
   render() {
     return (
-      <p>This is a music controller</p>
+      <div className="your-clips">
+        <p>This is a music controller</p>
+      </div>
     );
   }
 }
