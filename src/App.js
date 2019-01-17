@@ -5,6 +5,7 @@ import Header from './components/views/Header/Header';
 import Sidebar from './components/containers/Sidebar/Sidebar';
 
 import './App.css';
+import Output from './components/views/Output/Output';
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
           <Sidebar />
           <div className="main-content">
             <CurrentClip />
+            <Output />
           </div>
         </div>
       </div>
