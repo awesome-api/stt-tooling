@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Tile } from 'carbon-components-react';
 
 import CurrentClip from './components/containers/CurrentClip/CurrentClip';
 import Header from './components/views/Header/Header';
@@ -11,7 +12,7 @@ import Output from './components/views/Output/Output';
 class App extends Component {
   render() {
     return (
-      <div className="app">
+      <Tile className="app">
         <Header />
         <div className="content">
           <Sidebar />
@@ -21,7 +22,7 @@ class App extends Component {
             <YourClips />
           </div>
         </div>
-      </div>
+      </Tile>
     );
   }
 }
