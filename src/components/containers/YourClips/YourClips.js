@@ -7,11 +7,18 @@ class YourClips extends Component {
   render() {
     return (
       <div>
-      <h3>Your Clips</h3>
-      <p><div class="images"><img src={mp3file}/><h5>TEST.mp3</h5></div><hr></hr>
-      <button type = "custom-btn"><img src ={downloadcloud} alt="TEST.mp3"/> </button>
-      <span id ="custom-text">No file uploaded</span>
-      <h4>Drag and Drop to Upload Clips</h4> </p>
+        <h3>Your Clips</h3>
+          <p>
+            <div class="images">
+                <img src={mp3file}/>
+                  <h5>TEST.mp3</h5>
+            </div><hr/>
+              <button type = "custom-btn">
+                <img src ={downloadcloud} alt="TEST.mp3"/> 
+              </button>
+              <span id ="custom-text">No file uploaded</span>
+              <h4>Drag and Drop to Upload Clips</h4>
+          </p>
       </div>
     );
   }
