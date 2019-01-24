@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './YourClips.css';
-import downloadcloud from '/stt-tooling/public/Images_Folder/cloud-upload_2.png';
-import mp3file from '/stt-tooling/public/Images_Folder/mp3_file.png';
+import downloadcloud from '../../../images/cloud-upload-2.png';
+import mp3file from '../../../images/mp3_file.png';
 import Dropzone from 'react-dropzone';
 
 class YourClips extends Component {
@@ -51,8 +51,9 @@ class YourClips extends Component {
         </div>
         <section>
           <Dropzone
-          onDrop = { this.onDrop.bind(this) }
-          onFileDialogCancel = { this.onCancel.bind(this) } >
+            onDrop = { this.onDrop.bind(this) }
+            onFileDialogCancel = { this.onCancel.bind(this) }
+          >
             {
               ({ getRootProps, getInputProps }) => (
                 <div {...getRootProps() }>
@@ -61,7 +62,7 @@ class YourClips extends Component {
                 </div>
               )
             } 
-          </Dropzone> 
+          </Dropzone>
           <aside>
             <h4>Files</h4> 
             <ul>{files}</ul> 
