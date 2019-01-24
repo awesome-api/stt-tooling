@@ -1,12 +1,5 @@
 
 p {
-    margin: 5px;
-    border: 5px;
-    padding: 100px;
-    border-style: solid;
-    border-radius: 25px;
-    position: static;
-    border-color: lightseagreen;
 }
 
 h3 {
@@ -80,4 +73,14 @@ button:hover {
 #custom-text {
     margin-left: 10px;
     color: darkgray;
+}
+
+FileUploadClass {
+    margin: 5px;
+    border: 5px;
+    padding: 100px;
+    border-style: solid;
+    border-radius: 25px;
+    position: static;
+    border-color: lightseagreen;
 }

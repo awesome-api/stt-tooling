@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './YourClips.css';
-import downloadcloud from '/stt-tooling/public/Images_Folder'
-import mp3file from '/stt-tooling/public/mp3_file.png'
+import downloadcloud from '/stt-tooling/public/Images_Folder/cloud-upload_2.png'
+import mp3file from '/stt-tooling/public/Images_Folder/mp3_file.png'
 
 class YourClips extends Component {
   render() {
     return (
-      <div>
+      <div class="FileUploadClass">
         <h3>Your Clips</h3>
           <p>
             <div class="images">
