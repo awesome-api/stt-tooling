@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './YourClips.css';
-import downloadcloud from '/Awesome API Github/stt-tooling/src/cloud-upload-2.png'
-import mp3file from '/Awesome API Github/stt-tooling/src/mp3_file.png'
+import downloadcloud from '/stt-tooling/public/Images_Folder'
+import mp3file from '/stt-tooling/public/mp3_file.png'
 
 class YourClips extends Component {
   render() {
