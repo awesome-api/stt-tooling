@@ -72,10 +72,6 @@ button:hover {
     color: darkgray;
 }
 
-imagess custom-button {
-    background-color: #ffffff;
-}
-
 FileUploadClass {
     margin: 5px;
     border: 5px;

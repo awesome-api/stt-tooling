@@ -60,25 +60,6 @@ class YourClips extends Component {
         </section>       
         </div>
         </div>
-        /*<section>
-          <Dropzone
-            onDrop = { this.onDrop.bind(this) }
-            onFileDialogCancel = { this.onCancel.bind(this) }
-          >
-            {
-              ({ getRootProps, getInputProps }) => (
-                <div {...getRootProps() }>
-                  <input {...getInputProps() }/>
-                  <p>Drop files here, or click for file selection.</p> 
-                </div>
-              )
-            } 
-          </Dropzone>
-          <aside>
-            <h4>Files</h4> 
-            <ul>{files}</ul> 
-          </aside> 
-        </section>       </div> */
     );
   }
 }
