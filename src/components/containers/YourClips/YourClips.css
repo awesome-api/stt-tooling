@@ -63,12 +63,17 @@ button {
 }
 
 button:hover {
-    background-color: rgb(96, 44, 208);
+    background-color: #344ea9;
+    color: #ffffff;
 }
 
 #custom-text {
     margin-left: 10px;
     color: darkgray;
+}
+
+imagess custom-button {
+    background-color: #ffffff;
 }
 
 FileUploadClass {
