@@ -34,22 +34,13 @@ class YourClips extends Component {
         <div class="FileUploadClass">
           <h3>Your Clips</h3>
             <div>
-              <div class="images">
-                  <img
-                    src={mp3file}
-                    alt={'could not load'}
-                  />
-                  <h5>TEST.mp3</h5>
-              </div>
               <hr/>
-              <button type = "custom-btn">
-                <img src ={downloadcloud} alt="TEST.mp3"/> 
-              </button>
-              <span id ="custom-text">No file uploaded</span>
-              <h4>Drag and Drop to Upload Clips</h4>
             </div>
-        </div>
-        <section>
+            <section>
+          <aside>
+            <h4>Files</h4> 
+            <ul>{files}</ul> 
+          </aside> 
           <Dropzone
             onDrop = { this.onDrop.bind(this) }
             onFileDialogCancel = { this.onCancel.bind(this) }
@@ -58,17 +49,17 @@ class YourClips extends Component {
               ({ getRootProps, getInputProps }) => (
                 <div {...getRootProps() }>
                   <input {...getInputProps() }/>
+                  <button type = "custom-btn">
+                  <img src = {downloadcloud} alt="TEST.mp3"/>
+                  </button>
                   <p>Drop files here, or click for file selection.</p> 
                 </div>
               )
             } 
           </Dropzone>
-          <aside>
-            <h4>Files</h4> 
-            <ul>{files}</ul> 
-          </aside> 
-        </section> 
-      </div>
+        </section>       
+        </div>
+        </div>
     );
   }
 }
