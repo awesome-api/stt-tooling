@@ -11,17 +11,19 @@ import Output from './components/views/Output/Output';
 
 class App extends Component {
   state = {
-    data: null
+    recognizedOutput: null
   };
 
   componentDidMount() {
     this.callBackendAPI()
-      .then(res => this.setState({ data: res.express }))
+      .then(res => this.setState({ recognizedOutput: res.output }))
       .catch(err => console.log(err));
   }
 
   callBackendAPI = async () => {
-    const response = await fetch('/express_backend');
+    const response = await fetch('/api/recognize', {
+      method: 'POST'
+    });
     const body = await response.json();
 
     if (response.status !== 200) {
@@ -42,7 +44,7 @@ class App extends Component {
             <YourClips />
           </div>
         </div>
-        <p>{this.state.data}</p>
+        <p>{this.state.recognizedOutput}</p>
       </Tile>
     );
   }
