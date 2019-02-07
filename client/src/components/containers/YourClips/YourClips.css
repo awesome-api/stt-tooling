@@ -72,7 +72,7 @@ button:hover {
     color: darkgray;
 }
 
-FileUploadClass {
+.file-upload-class {
     margin: 5px;
     border: 5px;
     padding: 100px;

@@ -19,7 +19,7 @@ button:hover {
 
 .IconSizes img {
   height: 5rem;
-  width: 7rem;
+  width: 5rem;
 }
 
 button {
@@ -27,4 +27,5 @@ button {
   text-justify: auto;
   font-size: 20px;
   text-align: right;
+  flex-direction: column;
 }
