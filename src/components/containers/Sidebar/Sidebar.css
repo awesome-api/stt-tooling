@@ -1,9 +1,30 @@
 .sidebar {
-  /* background-color: cadetblue; */
-  width: 30%;
-  align-items: center;
-  background-color: lightgrey;
-  border-radius: 1rem;
-  height: 35rem;
-  margin: 2rem;
+  width: 40%;
+  height: 10rem;
+  margin: 1rem;
+  padding: 10px;
+}
+
+.sidebar:hover {
+}
+
+button:hover {
+  background-color: darkmagenta;
+}
+
+.IconSizes {
+  height: 90%;
+  width: 100%;
+}
+
+.IconSizes img {
+  height: 5rem;
+  width: 7rem;
+}
+
+button {
+  text-align: center;
+  text-justify: auto;
+  font-size: 20px;
+  text-align: right;
 }
