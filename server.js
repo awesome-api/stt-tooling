@@ -14,6 +14,10 @@ var speechToText = new SpeechToTextV1({
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.post('/api/recognize', (req, res) => {
+  // console.log('req: ' + JSON.stringify(req, null, 2));
+  // let uploadedFile = req.files.file;
+  // console.log('file name: ' + uploadedFile.name);
+  console.log('request: ' + req);
   var readStream = fs.createReadStream('audio-file.flac');
 
   var recognizeParams = {
@@ -30,7 +34,7 @@ app.post('/api/recognize', (req, res) => {
       console.log(error);
     } else {
       // console.log(JSON.stringify(speechRecognitionResults, null, 2));
-      res.send({ results: JSON.stringify(speechRecognitionResults, null, 2) });
+      res.send({ results: speechRecognitionResults });
     }
   });
 });

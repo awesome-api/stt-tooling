@@ -1,42 +1,61 @@
 import React, { Component } from 'react';
 import { Tile } from 'carbon-components-react';
+import axios from 'axios';
 
 import CurrentClip from './components/containers/CurrentClip/CurrentClip';
 import Header from './components/views/Header/Header';
 import Sidebar from './components/containers/Sidebar/Sidebar';
 import YourClips from './components/containers/YourClips/YourClips';
-
-import './App.css';
 import Output from './components/views/Output/Output';
 
-class App extends Component {
-  state = {
-    results: null
-  };
+import './App.css';
 
-  componentDidMount() {
-    this.callBackendAPI()
-      .then(res => this.setState({ results: JSON.parse(res.results) }))
-      .catch(err => console.log(err));
+class App extends Component {
+  constructor(props) {
+    super();
+
+    this.state = {
+      results: null,
+      selectedFile: null
+    };
   }
 
-  callBackendAPI = async () => {
-    const response = await fetch('/api/recognize', {
-      method: 'POST'
-    });
-    const body = await response.json();
-
-    if (response.status !== 200) {
-      throw Error(body.message) 
+  handleButtonClicked =() => {
+    if (this.state.selectedFile !== null) {
+      console.log('submitting file');
+      this.callAPI();
+    } else {
+      console.log('no file currently selected');
     }
-    return body;
-  };
+  }
+
+  callAPI = () => {
+    const data = new FormData();
+    data.append('file', this.state.selectedFile, this.state.selectedFile.name);
+    axios.post('/api/recognize', { data })
+      .then(res => {
+        console.log('response:', res);
+        this.setState({ results: res.data.results });
+      }).catch(err => {
+        console.log(err);
+      })
+  }
+
+  handleSelectedFile = event => {
+    console.log('selectedFile:', event.target.files[0]);
+    this.setState({
+      selectedFile: event.target.files[0]
+    });
+  }
+
+  handleUploadFile = file => {
+    console.log('uploading file');
+  }
 
   render() {
     const transcript = this.state.results !== null ?
       this.state.results.results[0].alternatives[0].transcript
       : '';
-    console.log();
     return (
       <Tile className="app">
         <Header />
@@ -48,7 +67,9 @@ class App extends Component {
             <YourClips />
           </div>
         </div>
+        <input type="file" onChange={this.handleSelectedFile} />
         <p>{transcript}</p>
+        <button onClick={this.handleButtonClicked} >Upload</button>
       </Tile>
     );
   }
