@@ -22,7 +22,7 @@ class Sidebar extends Component {
             <img src = {bluedocumentation}/>Documentation
           </button>
         </a>
-        <a href="https://www.youtube.com/">
+        <a href="https://www.youtube.com/watch?v=OTzveEx-rQw">
           <button>
             <img src = {purple}/>Video Tutorials
           </button>
