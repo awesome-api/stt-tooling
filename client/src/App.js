@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Tile } from 'carbon-components-react';
 
-import CurrentClip from './components/containers/CurrentClip/CurrentClip';
+import PlayAudio from './components/containers/PlayAudio/PlayAudio';
 import Header from './components/views/Header/Header';
 import Sidebar from './components/containers/Sidebar/Sidebar';
 import YourClips from './components/containers/YourClips/YourClips';
@@ -37,7 +37,9 @@ class App extends Component {
         <div className="content">
           <Sidebar />
           <div className="main-content">
-            <CurrentClip />
+            <div className="side-sontent">
+              <PlayAudio />
+            </div>
             <Output />
             <YourClips />
           </div>
