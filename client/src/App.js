@@ -11,12 +11,12 @@ import Output from './components/views/Output/Output';
 
 class App extends Component {
   state = {
-    recognizedOutput: null
+    results: null
   };
 
   componentDidMount() {
     this.callBackendAPI()
-      .then(res => this.setState({ recognizedOutput: res.output }))
+      .then(res => this.setState({ results: JSON.parse(res.results) }))
       .catch(err => console.log(err));
   }
 
@@ -33,6 +33,10 @@ class App extends Component {
   };
 
   render() {
+    const transcript = this.state.results !== null ?
+      this.state.results.results[0].alternatives[0].transcript
+      : '';
+    console.log();
     return (
       <Tile className="app">
         <Header />
@@ -44,7 +48,7 @@ class App extends Component {
             <YourClips />
           </div>
         </div>
-        <p>{this.state.recognizedOutput}</p>
+        <p>{transcript}</p>
       </Tile>
     );
   }
