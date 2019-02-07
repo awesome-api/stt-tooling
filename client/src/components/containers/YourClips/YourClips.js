@@ -30,7 +30,7 @@ class YourClips extends Component {
     
     return (
       <div>
-        <div className="FileUploadClass">
+        <div className="file-upload-class">
           <h3>Your Clips</h3>
           <div>
             <hr/>
