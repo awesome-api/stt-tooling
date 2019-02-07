@@ -1,9 +1,8 @@
 .sidebar {
   width: 40%;
-  align-items: center;
   height: 10rem;
   margin: 1rem;
-  padding: 5px;
+  padding: 10px;
 }
 
 .sidebar:hover {
@@ -14,7 +13,7 @@ button:hover {
 }
 
 .IconSizes {
-  height: 9rem;
+  height: 90%;
   width: 100%;
 }
 
