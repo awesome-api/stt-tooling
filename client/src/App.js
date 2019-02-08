@@ -20,37 +20,67 @@ class App extends Component {
     };
   }
 
-  handleButtonClicked =() => {
-    if (this.state.selectedFile !== null) {
-      console.log('submitting file');
-      this.callAPI();
-    } else {
-      console.log('no file currently selected');
-    }
+  handleFileSelected = e => {
+    this.setState({
+      selectedFile: e.target.files[0]
+    })
   }
 
-  callAPI = () => {
+  handleUpload = () => {
     const data = new FormData();
     data.append('file', this.state.selectedFile, this.state.selectedFile.name);
-    axios.post('/api/recognize', { data })
-      .then(res => {
-        console.log('response:', res);
-        this.setState({ results: res.data.results });
-      }).catch(err => {
-        console.log(err);
-      })
-  }
 
-  handleSelectedFile = event => {
-    console.log('selectedFile:', event.target.files[0]);
-    this.setState({
-      selectedFile: event.target.files[0]
+    axios.post('http://localhost:4000/api/recognize', data).then(res => {
+      console.log(res.statusText);
     });
   }
 
-  handleUploadFile = file => {
-    console.log('uploading file');
-  }
+  // callAPI = () => {
+  //   //TODO: delete interceptor
+  //   axios.interceptors.request.use(request => {
+  //     console.log('Starting Request', request)
+  //     return request
+  //   });
+
+  //   let testData = new FormData();
+  //   testData.append('somekey', 'someValue');
+  //   axios({
+  //     url: 'http://localhost:4000/api/recognize',
+  //     method: 'POST',
+  //     name: 'Noah Eigenfeld',
+  //     config: { headers: {'Content-Type': 'multipart/form-data' }},
+  //     testData
+  //   });
+
+  //   // for (var value of testData.values()) {
+  //   //   console.log(value); 
+  //   // }
+
+  //   console.log(this.state.selectedFile.name);
+
+  //   let data = new FormData();
+  //   data.append('file', this.state.selectedFile, this.state.selectedFile.name);
+  //   for (var value of data.values()) {
+  //     console.log('value:', value);
+  //   }
+  //   axios.post('http://localhost:4000/api/recognize', {
+  //     // axios.post('http://localhost:4000/upload', {
+  //     data: data,
+  //     name: 'name'
+  //   }).then(res => {
+  //       console.log('response:', res);
+  //       this.setState({ results: res.data.results });
+  //     }).catch(err => {
+  //       console.log(err);
+  //     })
+  // }
+
+  // handleSelectedFile = event => {
+  //   console.log('selectedFile:', event.target.files[0]);
+  //   this.setState({
+  //     selectedFile: event.target.files[0]
+  //   });
+  // }
 
   render() {
     const transcript = this.state.results !== null ?
@@ -60,6 +90,8 @@ class App extends Component {
       <Tile className="app">
         <Header />
         <div className="content">
+          <input type="file" onChange={this.handleFileSelected} />
+          <button onClick={this.handleUpload} >Upload</button>
           <Sidebar />
           <div className="main-content">
             <div className="side-sontent">
@@ -69,9 +101,7 @@ class App extends Component {
             <YourClips />
           </div>
         </div>
-        <input type="file" onChange={this.handleSelectedFile} />
         <p>{transcript}</p>
-        <button onClick={this.handleButtonClicked} >Upload</button>
       </Tile>
     );
   }

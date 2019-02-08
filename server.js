@@ -1,5 +1,9 @@
 const express = require('express');
+const cors = require('cors');
+const fileUpload = require('express-fileupload');
 const app = express();
+app.use(cors());
+app.use(fileUpload());
 const port = process.env.PORT || 4000;
 require('dotenv').config(); // fetches environment vars from '.env'
 
@@ -13,10 +17,10 @@ var speechToText = new SpeechToTextV1({
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-app.post('/api/recognize', (req, res) => {
-  // console.log('req: ' + JSON.stringify(req, null, 2));
-  // let uploadedFile = req.files.file;
-  // console.log('file name: ' + uploadedFile.name);
+app.post('/api/recognize/proto', (req, res) => {
+  // console.log('req: ' + JSON.stringify(req));
+  let uploadedFile = req.files.file;
+  console.log('file name: ' + uploadedFile.name);
   console.log('request: ' + req);
   var readStream = fs.createReadStream('audio-file.flac');
 
@@ -38,3 +42,22 @@ app.post('/api/recognize', (req, res) => {
     }
   });
 });
+
+//TODO: remove this endpoint
+app.post('/api/recognize', (req, res, next) => {
+  let uploadFile = req.files.file
+  const fileName = req.files.file.name
+  console.log('fileName: ' + fileName);
+  // uploadFile.mv(
+  //   `${__dirname}/public/files/${fileName}`,
+  //   function (err) {
+  //     if (err) {
+  //       return res.status(500).send(err)
+  //     }
+
+  //     res.json({
+  //       file: `public/${req.files.file.name}`,
+  //     })
+  //   },
+  // )
+})

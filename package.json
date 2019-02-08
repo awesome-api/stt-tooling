@@ -19,8 +19,10 @@
   "homepage": "https://github.com/awesome-api/stt-tooling#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "express-fileupload": "^1.1.1-alpha.1",
     "watson-developer-cloud": "^3.18.0"
   },
   "devDependencies": {
