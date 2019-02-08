@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tile } from 'carbon-components-react';
+import { Tile, Button } from 'carbon-components-react';
 import axios from 'axios';
 
 import PlayAudio from './components/containers/PlayAudio/PlayAudio';
@@ -16,15 +16,27 @@ class App extends Component {
 
     this.state = {
       results: [],
+      files: [],
       selectedFile: null,
       resultsLoading: false,
       resultsLoaded: false
     };
   }
 
-  updateSelectedFile = files => {
+  addFile = file => {
+    let filesArray = this.state.files;
+
+    filesArray.unshift(file);
+
     this.setState({
-      selectedFile : files[0]
+      filesArray,
+      selectedFile: file
+    });
+  }
+
+  updateSelectedFile = index => {
+    this.setState({
+      selectedFile: this.state.files[index]
     });
   }
 
@@ -40,6 +52,7 @@ class App extends Component {
       data.append('file', this.state.selectedFile, this.state.selectedFile.name);
   
       axios.post('http://localhost:4000/api/recognize', data).then(res => {
+        // console.log('results[0]:', res.data.results.results[0]);
         this.setState({
           results: res.data.results.results,
           resultsLoading: false,
@@ -61,7 +74,8 @@ class App extends Component {
       results,
       resultsLoaded,
       resultsLoading,
-      selectedFile
+      selectedFile,
+      files
     } = this.state;
 
     return (
@@ -70,24 +84,26 @@ class App extends Component {
         <div className="content">
           <Sidebar />
           <div className="main-content">
+            <PlayAudio file={selectedFile} />
             <div className="temp_file_uploader">
-              <button
+              <Button
                 className="upload-btn"
                 onClick={this.handleUpload}
               >
-                Upload
-              </button>
+                Recognize Audio
+              </Button>
             </div>
-            <PlayAudio file={selectedFile} />
             <Output
               results={results}
               isLoading={resultsLoading}
               isLoaded={resultsLoaded}
             />
             <YourClips
-              file={selectedFile}
+              selectedFile={selectedFile}
+              files={files}
               updateSelectedFile={this.updateSelectedFile} 
               cancelSelectedFile={this.cancelSelcetedFile}
+              addFile={this.addFile}
             />
           </div>
         </div>

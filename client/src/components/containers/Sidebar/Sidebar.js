@@ -12,29 +12,21 @@ class Sidebar extends Component {
     return (
       <div className='sidebar'>
         <div className="IconSizes">
-          <a href="https://github.com/awesome-api/stt-tooling">
-            <button>
-              <img src = {github} alt={'failed to load'} />
-              <p>GitHub</p>
-            </button>
+          <a className="bottom-border" href="https://github.com/awesome-api/stt-tooling">
+            <img src = {github} alt={'failed to load'} />
+            <p>GitHub</p>
           </a>
-          <a href="https://github.com/awesome-api/stt-tooling/wiki">
-            <button>
-              <img src = {bluedocumentation} alt={'failed to load'}/>
-              <p>Documentation</p>
-            </button>
+          <a className="bottom-border" href="https://github.com/awesome-api/stt-tooling/wiki">
+            <img src = {bluedocumentation} alt={'failed to load'}/>
+            <p>Documentation</p>
           </a>
-          <a href="https://www.youtube.com/watch?v=OTzveEx-rQw">
-            <button>
-              <img src = {purple} alt={'failed to load'}/>
-              <p>Video Tutorials</p>
-            </button>
+          <a className="bottom-border" href="https://www.youtube.com/watch?v=OTzveEx-rQw">
+            <img src = {purple} alt={'failed to load'}/>
+            <p>Video Tutorials</p>
           </a>
           <a href="https://github.com/awesome-api/stt-tooling/blob/master/README.md">
-            <button>
-              <img src = {info} alt={'failed to load'}/>
-              <p>Contact Us</p>
-            </button>
+            <img src = {info} alt={'failed to load'}/>
+            <p>Contact Us</p>
           </a>
         </div>
       </div>

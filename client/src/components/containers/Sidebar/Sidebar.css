@@ -1,18 +1,25 @@
 .sidebar {
   width: 40%;
-  height: 10rem;
+  height: min-content;
   margin: 1rem;
-  padding: 10px;
+  border-width: 5px;
+  border-color: #3d70b2;
+  border-style: solid;
+  border-radius: 1rem;
 }
 
 .sidebar:hover {
 }
 
-button:hover {
-  background-color: darkmagenta;
+.IconSizes a:hover {
+  background-color: #3d70b2;
+  color: white;
+  border-color: #3d70b2;
 }
 
 .IconSizes {
+  display: flex;
+  flex-direction: column;
   height: 90%;
   width: 100%;
 }
@@ -22,10 +29,22 @@ button:hover {
   width: 5rem;
 }
 
+.IconSizes a {
+  background-color: none;
+  padding: 1rem;
+}
+
 button {
   text-align: center;
   text-justify: auto;
   font-size: 20px;
-  text-align: right;
   flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.bottom-border {
+  border-bottom: black;
+  border-style: solid;
+  border-width: 1px;
 }

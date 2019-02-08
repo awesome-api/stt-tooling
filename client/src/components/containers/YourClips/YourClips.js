@@ -4,44 +4,52 @@ import downloadcloud from '../../../images/cloud-upload-2.png';
 import Dropzone from 'react-dropzone';
 import PropTypes from 'prop-types';
 
+import mp3_file from '../../../images/mp3_file.png';
+
 class YourClips extends Component {
 
+  handleOnDrop = files => {
+    this.props.addFile(files[0]);
+  }
+
   render() {
+    const {
+      selectedFile,
+      files
+    } = this.props;
+
+    const clips = files.map((file, i) => {
+      return (<div key={`clip-${i}`} className={'clip-list-item'} >
+        <img src={mp3_file} />
+        <h4>{file.name}</h4>
+      </div>);
+    });
+
     return (
       <div>
         <div className="file-upload-class">
-          <h3>Your Clips</h3>
-          <div>
-            <hr/>
+          <div className="top-half">
+            <h2>Your Clips</h2>
+            <div className="clips-list">
+              {clips}
+            </div>
           </div>
-          <section>
-            <aside>
-              <h4>Files</h4>
-              <ul>
-                { this.props.file !== null &&
-                  <li key ={this.props.file.name}>
-                    {this.props.file.name} - {this.props.file.size} bytes
-                  </li>
-                }
-	            </ul>
-            </aside> 
+          <div className="bottom-half">
             <Dropzone
-              onDrop = { this.props.updateSelectedFile }
+              onDrop = { this.handleOnDrop }
               onFileDialogCancel = { this.props.cancelSelectedFile }
             >
               {
                 ({ getRootProps, getInputProps }) => (
-                  <div {...getRootProps() }>
+                  <div className="dropzone" {...getRootProps() }>
                     <input {...getInputProps() }/>
-                    <button type = "custom-btn">
                     <img src = {downloadcloud} alt="TEST.mp3"/>
-                    </button>
                     <p>Drop files here, or click for file selection.</p> 
                   </div>
                 )
               }
             </Dropzone>
-          </section>
+          </div>
         </div>
       </div>
     );
@@ -49,9 +57,11 @@ class YourClips extends Component {
 }
 
 YourClips.propTypes = {
-  file: PropTypes.object,
+  selectedFile: PropTypes.object,
+  files: PropTypes.array,
   updateSelectedFile : PropTypes.func,
-  cancelSelectedFile : PropTypes.func
+  cancelSelectedFile : PropTypes.func,
+  addFile: PropTypes.func
 }
 
 export default YourClips;
