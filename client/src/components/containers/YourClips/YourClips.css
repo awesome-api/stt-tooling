@@ -1,9 +1,7 @@
 h3 {
     margin: 5px;
-    padding-top: 50px;
     border: 5px;
-    text-align: left;
-    border-color: purple;
+    /* text-align: center; */
 }
 
 h4 {
@@ -15,8 +13,8 @@ h5 {
 }
 
 img {
-    height: 5%;
-    width: 5%;
+    height: 7rem;
+    width: 7rem;
     orientation: landscape;
     display: block;
     margin-left: auto;
@@ -52,7 +50,7 @@ hr {
     position: left;
 }
 
-button {
+/* button {
     vertical-align: top;
     position: relative;
     display: flex;
@@ -60,11 +58,12 @@ button {
     justify-content: center;
     width: 100%;
     height: 100%;
-}
+} */
 
-button:hover {
-    background-color: #344ea9;
+.dropzone:hover {
+    background-color: lightseagreen;
     color: #ffffff;
+    border-top-color: lightseagreen;
 }
 
 #custom-text {
@@ -73,13 +72,15 @@ button:hover {
 }
 
 .file-upload-class {
-    margin: 5px;
+    margin: 1rem;
     border: 5px;
-    padding: 100px;
     border-style: solid;
-    border-radius: 25px;
+    border-radius: 1rem;
     position: static;
     border-color: lightseagreen;
+    display: flex;
+    flex-direction: column;
+    height: 25rem;
 }
 
 .your-clips {
@@ -88,4 +89,55 @@ button:hover {
   border-radius: 1rem;
   height: 15rem;
   margin: 2rem;
+}
+
+.dropzone {
+    /* background-color: greenyellow; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0 0 .5rem .5rem;
+    border-top-color: black;
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+
+.clips-list {
+    display: flex;
+    overflow-y: scroll;
+}
+
+.clips-list-item {
+    max-width: 15%;
+}
+
+.clip-list-item img {
+    height: 5rem;
+    width: 5rem;
+}
+
+.clip-list-item h4 {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+}
+
+.bottom-half {
+    height: 52%;
+    border-top: black;
+}
+
+.upload-btn {
+    max-height: 5rem;
+    max-width: 3rem;
+}
+
+.top-half {
+    height: 52%;
+    overflow-y: scroll;
+}
+
+.divider {
+    margin: 0px;
+    height: 1px;
 }

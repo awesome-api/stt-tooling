@@ -5,6 +5,7 @@
 
 .content {
   display: flex;
+  margin-top: 2rem;
 }
 
 .main-content {
@@ -21,7 +22,11 @@
 }
 
 .upload-btn {
-  max-width: 10rem;
+  max-width: 15rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  border-radius: 2rem;
 }
 
 .side-content {

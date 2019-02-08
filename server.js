@@ -9,7 +9,6 @@ const port = process.env.PORT || 4000;
 require('dotenv').config(); // fetches environment vars from '.env'
 
 var SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
-var fs = require('fs');
 
 var speechToText = new SpeechToTextV1({
   iam_apikey: process.env.API_KEY,
@@ -20,7 +19,6 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.post('/api/recognize', (req, res, next) => {
   let uploadFile = req.files.file
-  const fileName = req.files.file.name
 
   var recognizeParams = {
     audio: uploadFile.data,

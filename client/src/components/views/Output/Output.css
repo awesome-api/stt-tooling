@@ -1,7 +1,15 @@
 .output {
   align-items: center;
-  background-color: lightgrey;
+  /* background-color: lightgrey; */
   border-radius: 1rem;
   height: 15rem;
-  margin: 2rem;
+  margin: 1rem;
+  border-style: solid;
+  border-color: darkmagenta;
+  border-width: 5px;
+}
+
+.output-entry {
+  border: black;
+  border-width: 1px;
 }

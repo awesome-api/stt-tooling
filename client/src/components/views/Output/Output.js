@@ -12,8 +12,11 @@ class Output extends Component {
     } = this.props;
 
     const resultsList = results.map((result, i) => {
-      return <li key={`transcript-${i}`}>
-        {result.alternatives[0].transcript}
+      return <li className="output-entry" key={`transcript-${i}`}>
+        <h4>Transcript:</h4>
+        "{result.alternatives[0].transcript}"
+        <h4>Confidence:</h4>
+        {result.alternatives[0].confidence}
       </li>
     });
 
@@ -26,7 +29,7 @@ class Output extends Component {
       <div className="output">
         {
           (isLoading || !isLoaded) &&
-          <p>{loadMessage}</p>
+          <h2>{loadMessage}</h2>
         }
         <ul>
           {resultsList}
