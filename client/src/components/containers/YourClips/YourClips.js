@@ -2,32 +2,11 @@ import React, { Component } from 'react';
 import './YourClips.css';
 import downloadcloud from '../../../images/cloud-upload-2.png';
 import Dropzone from 'react-dropzone';
+import PropTypes from 'prop-types';
 
 class YourClips extends Component {
-  constructor() {
-    super()
-    this.state = {
-        files: []
-    }
-  }
-
-  onDrop(files) {
-    this.setState({ files });
-  }
-
-  onCancel() {
-    this.setState({
-      files: []
-    });
-  }
 
   render() {
-    const files = this.state.files.map(file => ( 
-      <li key = { file.name }> 
-        { file.name } - { file.size } bytes 
-        </li>
-      ));
-    
     return (
       <div>
         <div className="file-upload-class">
@@ -37,12 +16,18 @@ class YourClips extends Component {
           </div>
           <section>
             <aside>
-              <h4>Files</h4> 
-              <ul>{files}</ul> 
+              <h4>Files</h4>
+              <ul>
+                { this.props.file !== null &&
+                  <li key ={this.props.file.name}>
+                    {this.props.file.name} - {this.props.file.size} bytes
+                  </li>
+                }
+	            </ul>
             </aside> 
             <Dropzone
-              onDrop = { this.onDrop.bind(this) }
-              onFileDialogCancel = { this.onCancel.bind(this) }
+              onDrop = { this.props.updateSelectedFile }
+              onFileDialogCancel = { this.props.cancelSelectedFile }
             >
               {
                 ({ getRootProps, getInputProps }) => (
@@ -61,6 +46,12 @@ class YourClips extends Component {
       </div>
     );
   }
+}
+
+YourClips.propTypes = {
+  file: PropTypes.object,
+  updateSelectedFile : PropTypes.func,
+  cancelSelectedFile : PropTypes.func
 }
 
 export default YourClips;

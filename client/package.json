@@ -6,6 +6,7 @@
     "carbon-components": "^9.68.1",
     "carbon-components-react": "^6.77.0",
     "carbon-icons": "^7.0.7",
+    "cors": "^2.8.5",
     "font-awesome": "^4.7.0",
     "react": "^16.7.0",
     "react-audio-player": "^0.11.0",
@@ -28,8 +29,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "devDependencies": {
-    "nodemon": "^1.18.9"
-  }
+  ]
 }

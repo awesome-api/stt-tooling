@@ -13,6 +13,17 @@
   /* background-color: blue; */
 }
 
+.temp_file_uploader {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  align-items: center;
+}
+
+.upload-btn {
+  max-width: 10rem;
+}
+
 .side-content {
   align-content: center;
   width: 100%;
