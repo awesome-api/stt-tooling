@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
 const app = express();
+const util = require('util');
 app.use(cors());
 app.use(fileUpload());
 const port = process.env.PORT || 4000;
@@ -47,17 +48,23 @@ app.post('/api/recognize/proto', (req, res) => {
 app.post('/api/recognize', (req, res, next) => {
   let uploadFile = req.files.file
   const fileName = req.files.file.name
-  console.log('fileName: ' + fileName);
-  // uploadFile.mv(
-  //   `${__dirname}/public/files/${fileName}`,
-  //   function (err) {
-  //     if (err) {
-  //       return res.status(500).send(err)
-  //     }
 
-  //     res.json({
-  //       file: `public/${req.files.file.name}`,
-  //     })
-  //   },
-  // )
+  var recognizeParams = {
+    audio: uploadFile.data,
+    content_type: uploadFile.mimetype,
+    timestamps: true,
+    word_alternatives_threshold: 0.9,
+    keywords: ['colorado', 'tornado', 'tornadoes'],
+    keywords_threshold: 0.5
+  };
+
+  speechToText.recognize(recognizeParams, function(error, results) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('results:');
+      console.log(JSON.stringify(results, null, 2));
+      res.send({ results });
+    }
+  });
 })
