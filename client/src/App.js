@@ -33,8 +33,6 @@ class App extends Component {
     data.append('file', this.state.selectedFile, this.state.selectedFile.name);
 
     axios.post('http://localhost:4000/api/recognize', data).then(res => {
-      console.log('res:', res);
-      console.log('results:', res.data.results.results[0]);
       this.setState({
         results: res.data.results.results,
         resultsLoading: false,

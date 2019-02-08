@@ -35,8 +35,8 @@ app.post('/api/recognize', (req, res, next) => {
     if (error) {
       console.log(error);
     } else {
-      console.log('results:');
-      console.log(JSON.stringify(results, null, 2));
+      // console.log('results:');
+      // console.log(JSON.stringify(results, null, 2));
       res.send({ results });
     }
   });
