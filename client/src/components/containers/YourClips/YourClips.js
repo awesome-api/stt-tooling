@@ -18,12 +18,12 @@ class YourClips extends Component {
             <aside>
               <h4>Files</h4>
               <ul>
-		{ this.props.file &&
-		  <li key ={this.props.file.name}>
-		    {this.props.file.name} - {this.props.file.size} bytes 
-		  </li>
-		}
-	      </ul>   
+                { this.props.file !== null &&
+                  <li key ={this.props.file.name}>
+                    {this.props.file.name} - {this.props.file.size} bytes
+                  </li>
+                }
+	            </ul>
             </aside> 
             <Dropzone
               onDrop = { this.props.updateSelectedFile }

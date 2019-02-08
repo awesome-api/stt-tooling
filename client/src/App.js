@@ -22,12 +22,6 @@ class App extends Component {
     };
   }
 
-  handleFileSelected = e => {
-    this.setState({
-      selectedFile: e.target.files[0]
-    })
-  }
-
   updateSelectedFile = files => {
     this.setState({
       selectedFile : files[0]
@@ -41,28 +35,33 @@ class App extends Component {
   }
 
   handleUpload = () => {
-    const data = new FormData();
-    data.append('file', this.state.selectedFile, this.state.selectedFile.name);
-
-    axios.post('http://localhost:4000/api/recognize', data).then(res => {
+    if (this.state.selectedFile !== null) {
+      const data = new FormData();
+      data.append('file', this.state.selectedFile, this.state.selectedFile.name);
+  
+      axios.post('http://localhost:4000/api/recognize', data).then(res => {
+        this.setState({
+          results: res.data.results.results,
+          resultsLoading: false,
+          resultsLoaded: true
+        })
+      });
+  
       this.setState({
-        results: res.data.results.results,
-        resultsLoading: false,
-        resultsLoaded: true
-      })
-    });
-
-    this.setState({
-      resultsLoading: true,
-      resultsLoaded: false
-    });
+        resultsLoading: true,
+        resultsLoaded: false
+      });
+    } else {
+      console.log('No file selected. Cannot upload.');
+    }
   }
 
   render() {
     const {
       results,
       resultsLoaded,
-      resultsLoading
+      resultsLoading,
+      selectedFile
     } = this.state;
 
     return (
@@ -72,7 +71,6 @@ class App extends Component {
           <Sidebar />
           <div className="main-content">
             <div className="temp_file_uploader">
-              <input type="file" onChange={this.handleFileSelected} />
               <button
                 className="upload-btn"
                 onClick={this.handleUpload}
@@ -80,13 +78,14 @@ class App extends Component {
                 Upload
               </button>
             </div>
-            <PlayAudio file={this.state.selectedFile}  />
+            <PlayAudio file={selectedFile} />
             <Output
               results={results}
               isLoading={resultsLoading}
               isLoaded={resultsLoaded}
             />
-            <YourClips 
+            <YourClips
+              file={selectedFile}
               updateSelectedFile={this.updateSelectedFile} 
               cancelSelectedFile={this.cancelSelcetedFile}
             />
