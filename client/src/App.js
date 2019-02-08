@@ -15,13 +15,14 @@ class App extends Component {
     super();
 
     this.state = {
-      results: null,
-      selectedFile: null
+      results: [],
+      selectedFile: null,
+      resultsLoading: false,
+      resultsLoaded: false
     };
   }
 
   handleFileSelected = e => {
-    console.log('file: ', e.target.files[0]);
     this.setState({
       selectedFile: e.target.files[0]
     })
@@ -34,76 +35,52 @@ class App extends Component {
     axios.post('http://localhost:4000/api/recognize', data).then(res => {
       console.log('res:', res);
       console.log('results:', res.data.results.results[0]);
+      this.setState({
+        results: res.data.results.results,
+        resultsLoading: false,
+        resultsLoaded: true
+      })
+    });
+
+    this.setState({
+      resultsLoading: true,
+      resultsLoaded: false
     });
   }
 
-  // callAPI = () => {
-  //   //TODO: delete interceptor
-  //   axios.interceptors.request.use(request => {
-  //     console.log('Starting Request', request)
-  //     return request
-  //   });
-
-  //   let testData = new FormData();
-  //   testData.append('somekey', 'someValue');
-  //   axios({
-  //     url: 'http://localhost:4000/api/recognize',
-  //     method: 'POST',
-  //     name: 'Noah Eigenfeld',
-  //     config: { headers: {'Content-Type': 'multipart/form-data' }},
-  //     testData
-  //   });
-
-  //   // for (var value of testData.values()) {
-  //   //   console.log(value); 
-  //   // }
-
-  //   console.log(this.state.selectedFile.name);
-
-  //   let data = new FormData();
-  //   data.append('file', this.state.selectedFile, this.state.selectedFile.name);
-  //   for (var value of data.values()) {
-  //     console.log('value:', value);
-  //   }
-  //   axios.post('http://localhost:4000/api/recognize', {
-  //     // axios.post('http://localhost:4000/upload', {
-  //     data: data,
-  //     name: 'name'
-  //   }).then(res => {
-  //       console.log('response:', res);
-  //       this.setState({ results: res.data.results });
-  //     }).catch(err => {
-  //       console.log(err);
-  //     })
-  // }
-
-  // handleSelectedFile = event => {
-  //   console.log('selectedFile:', event.target.files[0]);
-  //   this.setState({
-  //     selectedFile: event.target.files[0]
-  //   });
-  // }
-
   render() {
-    const transcript = this.state.results !== null ?
-      this.state.results.results[0].alternatives[0].transcript
-      : '';
+    const {
+      results,
+      resultsLoaded,
+      resultsLoading
+    } = this.state;
+
     return (
       <Tile className="app">
         <Header />
         <div className="content">
-          <input type="file" onChange={this.handleFileSelected} />
-          <button onClick={this.handleUpload} >Upload</button>
           <Sidebar />
           <div className="main-content">
+            <div className="temp_file_uploader">
+              <input type="file" onChange={this.handleFileSelected} />
+              <button
+                className="upload-btn"
+                onClick={this.handleUpload}
+              >
+                Upload
+              </button>
+            </div>
             <div className="side-sontent">
               <PlayAudio />
             </div>
-            <Output />
+            <Output
+              results={results}
+              isLoading={resultsLoading}
+              isLoaded={resultsLoaded}
+            />
             <YourClips />
           </div>
         </div>
-        <p>{transcript}</p>
       </Tile>
     );
   }

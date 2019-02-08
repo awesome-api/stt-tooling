@@ -18,33 +18,6 @@ var speechToText = new SpeechToTextV1({
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-app.post('/api/recognize/proto', (req, res) => {
-  // console.log('req: ' + JSON.stringify(req));
-  let uploadedFile = req.files.file;
-  console.log('file name: ' + uploadedFile.name);
-  console.log('request: ' + req);
-  var readStream = fs.createReadStream('audio-file.flac');
-
-  var recognizeParams = {
-    audio: readStream,
-    content_type: 'audio/flac',
-    timestamps: true,
-    word_alternatives_threshold: 0.9,
-    keywords: ['colorado', 'tornado', 'tornadoes'],
-    keywords_threshold: 0.5
-  };
-
-  speechToText.recognize(recognizeParams, function(error, speechRecognitionResults) {
-    if (error) {
-      console.log(error);
-    } else {
-      // console.log(JSON.stringify(speechRecognitionResults, null, 2));
-      res.send({ results: speechRecognitionResults });
-    }
-  });
-});
-
-//TODO: remove this endpoint
 app.post('/api/recognize', (req, res, next) => {
   let uploadFile = req.files.file
   const fileName = req.files.file.name
