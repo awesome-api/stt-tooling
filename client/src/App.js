@@ -11,8 +11,20 @@ import Output from './components/views/Output/Output';
 
 class App extends Component {
   state = {
-    data: null
+    selectedFile: null
   };
+
+  updateSelectedFile=(files) => {
+     this.setState({
+	selectedFile : files[0]
+	});
+}
+
+  cancelSelectedFile=(files) => {
+     this.setState({
+	selectedFile : null
+	});
+}
 
   componentDidMount() {
     this.callBackendAPI()
@@ -37,11 +49,12 @@ class App extends Component {
         <div className="content">
           <Sidebar />
           <div className="main-content">
-            <div className="side-sontent">
-              <PlayAudio />
-            </div>
+            <PlayAudio file={this.state.selectedFile}  />
             <Output />
-            <YourClips />
+            <YourClips 
+		updateSelectedFile={this.updatedSelectedFile} 
+		cancelSelectedFile={this.cancelSelcetedFile}
+		/>
           </div>
         </div>
         <p>{this.state.data}</p>
