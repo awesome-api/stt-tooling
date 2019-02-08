@@ -9,6 +9,7 @@ Ex: (`.env`)
 ```js
 API_URL='<your/api/endpoint>'
 API_KEY='<your_iam_api_key>'
+```
 
 ## Starting the Application
 
