@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tile, Button } from 'carbon-components-react';
+import { Tile, Button, TextInput } from 'carbon-components-react';
 import axios from 'axios';
 
 import PlayAudio from './components/containers/PlayAudio/PlayAudio';
@@ -19,7 +19,8 @@ class App extends Component {
       files: [],
       selectedFile: null,
       resultsLoading: false,
-      resultsLoaded: false
+      resultsLoaded: false,
+      keywords: []
     };
   }
 
@@ -50,6 +51,7 @@ class App extends Component {
     if (this.state.selectedFile !== null) {
       const data = new FormData();
       data.append('file', this.state.selectedFile, this.state.selectedFile.name);
+      data.append('keywords', JSON.stringify(this.state.keywords));
   
       axios.post('http://localhost:4000/api/recognize', data).then(res => {
         // console.log('results[0]:', res.data.results.results[0]);
@@ -67,6 +69,13 @@ class App extends Component {
     } else {
       console.log('No file selected. Cannot upload.');
     }
+  }
+
+  onKeywordsChange = (e) => {
+    let keywords = e.target.value.split(',');
+    this.setState({
+      keywords: keywords
+    });
   }
 
   render() {
@@ -92,6 +101,12 @@ class App extends Component {
               >
                 Recognize Audio
               </Button>
+              <TextInput
+                id='keywords-input'
+                labelText='Keywords'
+                placeholder='Keywords, separated by commas'
+                onChange={this.onKeywordsChange}
+              />
             </div>
             <Output
               results={results}

@@ -19,13 +19,17 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.post('/api/recognize', (req, res, next) => {
   let uploadFile = req.files.file
+  let keywordsArray = JSON.parse(req.body.keywords);
+  if (keywordsArray.length === 0) {
+    keywordsArray = [''];
+  }
 
   var recognizeParams = {
     audio: uploadFile.data,
     content_type: uploadFile.mimetype,
     timestamps: true,
     word_alternatives_threshold: 0.9,
-    keywords: ['colorado', 'tornado', 'tornadoes'],
+    keywords: keywordsArray,
     keywords_threshold: 0.5
   };
 
