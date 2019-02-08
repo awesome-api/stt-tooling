@@ -28,6 +28,18 @@ class App extends Component {
     })
   }
 
+  updateSelectedFile = files => {
+    this.setState({
+      selectedFile : files[0]
+    });
+  }
+
+ cancelSelectedFile=(files) => {
+    this.setState({
+      selectedFile : null
+    });
+  }
+
   handleUpload = () => {
     const data = new FormData();
     data.append('file', this.state.selectedFile, this.state.selectedFile.name);
@@ -68,15 +80,16 @@ class App extends Component {
                 Upload
               </button>
             </div>
-            <div className="side-sontent">
-              <PlayAudio />
-            </div>
+            <PlayAudio file={this.state.selectedFile}  />
             <Output
               results={results}
               isLoading={resultsLoading}
               isLoaded={resultsLoaded}
             />
-            <YourClips />
+            <YourClips 
+              updateSelectedFile={this.updateSelectedFile} 
+              cancelSelectedFile={this.cancelSelcetedFile}
+            />
           </div>
         </div>
       </Tile>
